@@ -1,0 +1,8 @@
+# 忽略敏感账号配置，切勿上传
+accounts.json
+
+# 忽略 Python 缓存与虚拟环境
+__pycache__/
+*.py[cod]
+.idea/
+.venv/

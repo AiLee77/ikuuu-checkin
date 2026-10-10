@@ -1,0 +1,27 @@
+name: ikuuu Checkin
+
+on:
+  schedule:
+    # 每天北京时间 21:00 定时执行 (对应 UTC 13:00)
+    - cron: '0 13 * * *'
+  workflow_dispatch: # 支持在 GitHub 网页手动点击按钮运行
+
+jobs:
+  checkin-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run Checkin Script
+        env:
+          IKUUU_ACCOUNTS: ${{ secrets.IKUUU_ACCOUNTS }}
+        run: python check.py
