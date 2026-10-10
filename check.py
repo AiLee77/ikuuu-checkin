@@ -248,13 +248,22 @@ def main():
     print(f"🌐 站点地址: {base_url}")
     print(f"👥 共读取到 {len(accounts)} 个有效账号\n")
 
+    # ---------------- 1. 启动前随机延时 ----------------
+    start_delay_max = int(config.get("start_random_delay_max", 0))
+    if start_delay_max > 0:
+        delay = random.randint(5, start_delay_max)
+        print(f"🎲 启动随机休眠: {delay} 秒...")
+        time.sleep(delay)
+
     success_count = 0
     total_count = len(accounts)
     summary_lines = []
 
+    # ---------------- 2. 账号遍历与休眠 ----------------
     for index, acc in enumerate(accounts, start=1):
         if index > 1:
             delay = random.uniform(interval_min, interval_max)
+            print(f"⏱️ 休眠 {delay:.1f} 秒处理下一账号...")
             time.sleep(delay)
 
         signer = IkuuuCookieSigner(
