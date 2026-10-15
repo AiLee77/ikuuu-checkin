@@ -1,6 +1,6 @@
 {
   "base_url": "https://ikuuu.top",
-  "start_random_delay_max": 60,
+  "start_random_delay_max": 7200,
   "interval_min": 5,
   "interval_max": 15
 }
